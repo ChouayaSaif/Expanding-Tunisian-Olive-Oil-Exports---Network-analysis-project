@@ -48,16 +48,16 @@ Uses a geographic (Haversine) heuristic to guide the search and reduce explored 
 
 ---
 
-## ▶️ Run the App
+## Run the App
 
 ### Install dependencies
 
-'''bash
+```bash
 pip install flask
 python app.py
-Open in browser
-http://127.0.0.1:5000
-'''
+# Open in browser:
+# http://127.0.0.1:5000
+```
 
 ### Output
 
