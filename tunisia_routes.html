@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_803b52af3fcea5b226fa6a08e39c8692 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="
+position: fixed;
+bottom: 40px;
+left: 40px;
+width: 240px;
+height: 250px;
+background-color: white;
+border:2px solid grey;
+z-index:9999;
+font-size:13px;
+padding: 10px;
+opacity: 0.92;
+">
+<b>Tunisia Optimal Export Paths</b><br><br>
+
+<b>Country Tiers</b><br>
+<span style='color:green;'>●</span> Source (Tunisia)<br>
+<span style='color:red;'>●</span> Tier 1 (Direct)<br>
+<span style='color:orange;'>●</span> Tier 2 (1 Hub)<br>
+<span style='color:yellow;'>●</span> Tier 3 (2 Hubs)<br>
+<span style='color:purple;'>●</span> Tier 4 (≥3 Hubs)<br>
+<span style='color:gray;'>●</span> Unreachable<br><br>
+
+<b>Edge Types</b><br>
+Green – Direct export<br>
+Red – First hop to hub<br>
+Orange – Final leg<br>
+Purple – Intermediate hops<br>
+</div>
+    
+            <div class="folium-map" id="map_803b52af3fcea5b226fa6a08e39c8692" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_803b52af3fcea5b226fa6a08e39c8692 = L.map(
+                "map_803b52af3fcea5b226fa6a08e39c8692",
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1db51dbade9c07b03e0433c4f603bdf4 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_1db51dbade9c07b03e0433c4f603bdf4.addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var circle_marker_cf120dd03e66ad2b723f958758ce5661 = L.circleMarker(
+                [36.81, 10.29],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_d67aa982b73c63ddeb17636aaf69da41 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3386f244c32c2ebf7a68c32efde376ba = $(`<div id="html_3386f244c32c2ebf7a68c32efde376ba" style="width: 100.0%; height: 100.0%;">Tunisia (Source)</div>`)[0];
+                popup_d67aa982b73c63ddeb17636aaf69da41.setContent(html_3386f244c32c2ebf7a68c32efde376ba);
+            
+        
+
+        circle_marker_cf120dd03e66ad2b723f958758ce5661.bindPopup(popup_d67aa982b73c63ddeb17636aaf69da41)
+        ;
+
+        
+    
+    
+            circle_marker_cf120dd03e66ad2b723f958758ce5661.bindTooltip(
+                `<div>
+                     Tunisia – Source
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e275a7e1945d52ac2aa301491baeb2a4 = L.marker(
+                [36.81, 10.29],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_cc9cc2d088713a29bc763f416c109762 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Tunisia\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_e275a7e1945d52ac2aa301491baeb2a4.setIcon(div_icon_cc9cc2d088713a29bc763f416c109762);
+            
+    
+            var circle_marker_0b9d889a34d3ee4aed95470c25edadae = L.circleMarker(
+                [40.7, -74.0],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_49386d936d442eaf788cceca6e7d2e92 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f37f65d9c1de92ea9c0bb96731b7d1e1 = $(`<div id="html_f37f65d9c1de92ea9c0bb96731b7d1e1" style="width: 100.0%; height: 100.0%;">United States (Tier 3)</div>`)[0];
+                popup_49386d936d442eaf788cceca6e7d2e92.setContent(html_f37f65d9c1de92ea9c0bb96731b7d1e1);
+            
+        
+
+        circle_marker_0b9d889a34d3ee4aed95470c25edadae.bindPopup(popup_49386d936d442eaf788cceca6e7d2e92)
+        ;
+
+        
+    
+    
+            circle_marker_0b9d889a34d3ee4aed95470c25edadae.bindTooltip(
+                `<div>
+                     United States – Tier 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d7c8b1d8e4f4397583422b244c0596ea = L.marker(
+                [40.7, -74.0],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_9e87d57f5f5d64fdcd58e1e50f2a33c7 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    United States\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_d7c8b1d8e4f4397583422b244c0596ea.setIcon(div_icon_9e87d57f5f5d64fdcd58e1e50f2a33c7);
+            
+    
+            var circle_marker_835584ebc0eebfe5187536e48ea23664 = L.circleMarker(
+                [53.54, 9.99],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_2527c9002b8ada735b08e8a242dd139d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3865163e95c1fdff5cfa24de3426c85c = $(`<div id="html_3865163e95c1fdff5cfa24de3426c85c" style="width: 100.0%; height: 100.0%;">Germany (Tier 2)</div>`)[0];
+                popup_2527c9002b8ada735b08e8a242dd139d.setContent(html_3865163e95c1fdff5cfa24de3426c85c);
+            
+        
+
+        circle_marker_835584ebc0eebfe5187536e48ea23664.bindPopup(popup_2527c9002b8ada735b08e8a242dd139d)
+        ;
+
+        
+    
+    
+            circle_marker_835584ebc0eebfe5187536e48ea23664.bindTooltip(
+                `<div>
+                     Germany – Tier 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_012c5f66830e5fa576b99424aefe1662 = L.marker(
+                [53.54, 9.99],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_559a32822e5ef31ad26d9316f354cef5 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Germany\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_012c5f66830e5fa576b99424aefe1662.setIcon(div_icon_559a32822e5ef31ad26d9316f354cef5);
+            
+    
+            var circle_marker_e5d77f85f11b0213bb2aafaad033d377 = L.circleMarker(
+                [31.23, 121.47],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_7e05222e57a1543fc50fba938f4cf033 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5d60acf2685864b7b0ed54c2987c73ea = $(`<div id="html_5d60acf2685864b7b0ed54c2987c73ea" style="width: 100.0%; height: 100.0%;">China (Tier 4)</div>`)[0];
+                popup_7e05222e57a1543fc50fba938f4cf033.setContent(html_5d60acf2685864b7b0ed54c2987c73ea);
+            
+        
+
+        circle_marker_e5d77f85f11b0213bb2aafaad033d377.bindPopup(popup_7e05222e57a1543fc50fba938f4cf033)
+        ;
+
+        
+    
+    
+            circle_marker_e5d77f85f11b0213bb2aafaad033d377.bindTooltip(
+                `<div>
+                     China – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_242e057b1d8215b01ec6a53c633be85f = L.marker(
+                [31.23, 121.47],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_ff197f9ad1fa392ff1a7d8bde1cead3e = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    China\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_242e057b1d8215b01ec6a53c633be85f.setIcon(div_icon_ff197f9ad1fa392ff1a7d8bde1cead3e);
+            
+    
+            var circle_marker_10861928f22490dc56a4dfb5f522f69c = L.circleMarker(
+                [35.6, 139.78],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_fc9bc0abbc17c240634c1d912d44572c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_93246c25170bf3a47a6e8fb6e9b0ad60 = $(`<div id="html_93246c25170bf3a47a6e8fb6e9b0ad60" style="width: 100.0%; height: 100.0%;">Japan (Tier 4)</div>`)[0];
+                popup_fc9bc0abbc17c240634c1d912d44572c.setContent(html_93246c25170bf3a47a6e8fb6e9b0ad60);
+            
+        
+
+        circle_marker_10861928f22490dc56a4dfb5f522f69c.bindPopup(popup_fc9bc0abbc17c240634c1d912d44572c)
+        ;
+
+        
+    
+    
+            circle_marker_10861928f22490dc56a4dfb5f522f69c.bindTooltip(
+                `<div>
+                     Japan – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_958e9c67cf5789e20d2ddb5e1dbd131e = L.marker(
+                [35.6, 139.78],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_9aef5cf6bfdbf208331bacb6425763c2 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Japan\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_958e9c67cf5789e20d2ddb5e1dbd131e.setIcon(div_icon_9aef5cf6bfdbf208331bacb6425763c2);
+            
+    
+            var circle_marker_31b45a4a495703b08ead245594f68799 = L.circleMarker(
+                [51.45, 0.0],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_0bd952f3771891a2ed3b3a246d336e23 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e93d162c044a06e0812af5b1979f8b39 = $(`<div id="html_e93d162c044a06e0812af5b1979f8b39" style="width: 100.0%; height: 100.0%;">United Kingdom (Tier 3)</div>`)[0];
+                popup_0bd952f3771891a2ed3b3a246d336e23.setContent(html_e93d162c044a06e0812af5b1979f8b39);
+            
+        
+
+        circle_marker_31b45a4a495703b08ead245594f68799.bindPopup(popup_0bd952f3771891a2ed3b3a246d336e23)
+        ;
+
+        
+    
+    
+            circle_marker_31b45a4a495703b08ead245594f68799.bindTooltip(
+                `<div>
+                     United Kingdom – Tier 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_890a214c278fc4b1886708b7615a718c = L.marker(
+                [51.45, 0.0],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_3596d290fd43caa40662aaedf8aca80d = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    United Kingdom\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_890a214c278fc4b1886708b7615a718c.setIcon(div_icon_3596d290fd43caa40662aaedf8aca80d);
+            
+    
+            var circle_marker_10b0beff54e4777a27a49920d9f19abd = L.circleMarker(
+                [43.3, 5.37],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_6dabb74a0cd84f1b3111c7aff742f0ab = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c3aae03777760e98fae2ff25f42ad3cd = $(`<div id="html_c3aae03777760e98fae2ff25f42ad3cd" style="width: 100.0%; height: 100.0%;">France (Tier 1)</div>`)[0];
+                popup_6dabb74a0cd84f1b3111c7aff742f0ab.setContent(html_c3aae03777760e98fae2ff25f42ad3cd);
+            
+        
+
+        circle_marker_10b0beff54e4777a27a49920d9f19abd.bindPopup(popup_6dabb74a0cd84f1b3111c7aff742f0ab)
+        ;
+
+        
+    
+    
+            circle_marker_10b0beff54e4777a27a49920d9f19abd.bindTooltip(
+                `<div>
+                     France – Tier 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_b489a0dbee3388555ba10b25eb5fab1a = L.marker(
+                [43.3, 5.37],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_99c32088d4dd0050fbc045f004f65c40 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    France\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_b489a0dbee3388555ba10b25eb5fab1a.setIcon(div_icon_99c32088d4dd0050fbc045f004f65c40);
+            
+    
+            var circle_marker_fd0f5781d1cff0853b96d6551854c51f = L.circleMarker(
+                [45.5, -73.55],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_265cedc951188b6ddb97b0784d108a4a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8f920e7d55a8715440a3ac438a70e7f0 = $(`<div id="html_8f920e7d55a8715440a3ac438a70e7f0" style="width: 100.0%; height: 100.0%;">Canada (Tier 2)</div>`)[0];
+                popup_265cedc951188b6ddb97b0784d108a4a.setContent(html_8f920e7d55a8715440a3ac438a70e7f0);
+            
+        
+
+        circle_marker_fd0f5781d1cff0853b96d6551854c51f.bindPopup(popup_265cedc951188b6ddb97b0784d108a4a)
+        ;
+
+        
+    
+    
+            circle_marker_fd0f5781d1cff0853b96d6551854c51f.bindTooltip(
+                `<div>
+                     Canada – Tier 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_3d37327c543ecf9817bf2e33f8cea6bd = L.marker(
+                [45.5, -73.55],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_aa3f34d85f26f73f0f3e0eb5c4aaf51f = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Canada\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_3d37327c543ecf9817bf2e33f8cea6bd.setIcon(div_icon_aa3f34d85f26f73f0f3e0eb5c4aaf51f);
+            
+    
+            var circle_marker_98bf9033191162db286e040dc3284e32 = L.circleMarker(
+                [35.1, 129.04],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_59aa879668a90533c7214a89733c66f9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bd0be9c86807990d00e14d8e9df5e567 = $(`<div id="html_bd0be9c86807990d00e14d8e9df5e567" style="width: 100.0%; height: 100.0%;">South Korea (Tier 4)</div>`)[0];
+                popup_59aa879668a90533c7214a89733c66f9.setContent(html_bd0be9c86807990d00e14d8e9df5e567);
+            
+        
+
+        circle_marker_98bf9033191162db286e040dc3284e32.bindPopup(popup_59aa879668a90533c7214a89733c66f9)
+        ;
+
+        
+    
+    
+            circle_marker_98bf9033191162db286e040dc3284e32.bindTooltip(
+                `<div>
+                     South Korea – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_99c3614149c18c59eb11638c6e9a24dc = L.marker(
+                [35.1, 129.04],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_801eb02d899a8c8e47e1555b6642392c = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    South Korea\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_99c3614149c18c59eb11638c6e9a24dc.setIcon(div_icon_801eb02d899a8c8e47e1555b6642392c);
+            
+    
+            var circle_marker_102e1191939cbbd1ed9c452fa66756b4 = L.circleMarker(
+                [-12.417105, 130.800923],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_d02a1a8b3620d350be9749af12219a70 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e104a117ab2feae474fc89c26ae2e23f = $(`<div id="html_e104a117ab2feae474fc89c26ae2e23f" style="width: 100.0%; height: 100.0%;">Australia (Tier 4)</div>`)[0];
+                popup_d02a1a8b3620d350be9749af12219a70.setContent(html_e104a117ab2feae474fc89c26ae2e23f);
+            
+        
+
+        circle_marker_102e1191939cbbd1ed9c452fa66756b4.bindPopup(popup_d02a1a8b3620d350be9749af12219a70)
+        ;
+
+        
+    
+    
+            circle_marker_102e1191939cbbd1ed9c452fa66756b4.bindTooltip(
+                `<div>
+                     Australia – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_74b6867d8c86873c7fb5a302f3e963b9 = L.marker(
+                [-12.417105, 130.800923],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_d4541675b82cdc22a99545d481cbb16d = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Australia\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_74b6867d8c86873c7fb5a302f3e963b9.setIcon(div_icon_d4541675b82cdc22a99545d481cbb16d);
+            
+    
+            var circle_marker_e88f9fc2f1b59778d95662ab482cc710 = L.circleMarker(
+                [44.41, 8.93],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_0752160441dacc2e8cc651286f445f6b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a54c8c88ac78d17c41dd6cb643ffc3e4 = $(`<div id="html_a54c8c88ac78d17c41dd6cb643ffc3e4" style="width: 100.0%; height: 100.0%;">Italy (Tier 1)</div>`)[0];
+                popup_0752160441dacc2e8cc651286f445f6b.setContent(html_a54c8c88ac78d17c41dd6cb643ffc3e4);
+            
+        
+
+        circle_marker_e88f9fc2f1b59778d95662ab482cc710.bindPopup(popup_0752160441dacc2e8cc651286f445f6b)
+        ;
+
+        
+    
+    
+            circle_marker_e88f9fc2f1b59778d95662ab482cc710.bindTooltip(
+                `<div>
+                     Italy – Tier 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_b36849fd76c68b0210bb7191249f11b3 = L.marker(
+                [44.41, 8.93],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_1cc682fde3bce5214429e0747d7e23ba = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Italy\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_b36849fd76c68b0210bb7191249f11b3.setIcon(div_icon_1cc682fde3bce5214429e0747d7e23ba);
+            
+    
+            var circle_marker_241d0f72c6aac490ed4db8ca99ae3e43 = L.circleMarker(
+                [19.08, 72.88],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_ec949fbc5b3512b387a5154eb4994b1a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3796b4aad75b881305a114d0696fc7dc = $(`<div id="html_3796b4aad75b881305a114d0696fc7dc" style="width: 100.0%; height: 100.0%;">India (Tier 4)</div>`)[0];
+                popup_ec949fbc5b3512b387a5154eb4994b1a.setContent(html_3796b4aad75b881305a114d0696fc7dc);
+            
+        
+
+        circle_marker_241d0f72c6aac490ed4db8ca99ae3e43.bindPopup(popup_ec949fbc5b3512b387a5154eb4994b1a)
+        ;
+
+        
+    
+    
+            circle_marker_241d0f72c6aac490ed4db8ca99ae3e43.bindTooltip(
+                `<div>
+                     India – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c2fb03bd8001e7af24a85536710b7afe = L.marker(
+                [19.08, 72.88],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_531da9e66554c92b43600adba7e96fd7 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    India\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_c2fb03bd8001e7af24a85536710b7afe.setIcon(div_icon_531da9e66554c92b43600adba7e96fd7);
+            
+    
+            var circle_marker_0db89a7e3c79e0728a80e90a3bbc8b2f = L.circleMarker(
+                [51.95, 4.14],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_7638d4cdc39a3213b2186284692bfb40 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4d02b3e36a7dd8878d8950a49458115f = $(`<div id="html_4d02b3e36a7dd8878d8950a49458115f" style="width: 100.0%; height: 100.0%;">Netherlands (Tier 2)</div>`)[0];
+                popup_7638d4cdc39a3213b2186284692bfb40.setContent(html_4d02b3e36a7dd8878d8950a49458115f);
+            
+        
+
+        circle_marker_0db89a7e3c79e0728a80e90a3bbc8b2f.bindPopup(popup_7638d4cdc39a3213b2186284692bfb40)
+        ;
+
+        
+    
+    
+            circle_marker_0db89a7e3c79e0728a80e90a3bbc8b2f.bindTooltip(
+                `<div>
+                     Netherlands – Tier 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_b6cb6a597bd78b002669d7105b07880e = L.marker(
+                [51.95, 4.14],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_ec91d5d018c98ecc43354b30e1d59e79 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Netherlands\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_b6cb6a597bd78b002669d7105b07880e.setIcon(div_icon_ec91d5d018c98ecc43354b30e1d59e79);
+            
+    
+            var circle_marker_0e8e026fe593f3703c9f45faee506014 = L.circleMarker(
+                [36.13, -5.43],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_c22c0ae3616c1b8feafe3e70475a7c14 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7c3bd8159abfaaffdb650c0100aa1d88 = $(`<div id="html_7c3bd8159abfaaffdb650c0100aa1d88" style="width: 100.0%; height: 100.0%;">Spain (Tier 1)</div>`)[0];
+                popup_c22c0ae3616c1b8feafe3e70475a7c14.setContent(html_7c3bd8159abfaaffdb650c0100aa1d88);
+            
+        
+
+        circle_marker_0e8e026fe593f3703c9f45faee506014.bindPopup(popup_c22c0ae3616c1b8feafe3e70475a7c14)
+        ;
+
+        
+    
+    
+            circle_marker_0e8e026fe593f3703c9f45faee506014.bindTooltip(
+                `<div>
+                     Spain – Tier 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_0dbb603b387f760f4d65133da6f61cfb = L.marker(
+                [36.13, -5.43],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_02793336e7adda32c8ada4c7d1515c89 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Spain\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_0dbb603b387f760f4d65133da6f61cfb.setIcon(div_icon_02793336e7adda32c8ada4c7d1515c89);
+            
+    
+            var circle_marker_32068f352d2d869a477ce711790b6ccc = L.circleMarker(
+                [-23.96, -46.33],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_6bed0771f8345f6345ca9d0bcd58f089 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1075098e1d5397f852a717cd94970c44 = $(`<div id="html_1075098e1d5397f852a717cd94970c44" style="width: 100.0%; height: 100.0%;">Brazil (Tier 2)</div>`)[0];
+                popup_6bed0771f8345f6345ca9d0bcd58f089.setContent(html_1075098e1d5397f852a717cd94970c44);
+            
+        
+
+        circle_marker_32068f352d2d869a477ce711790b6ccc.bindPopup(popup_6bed0771f8345f6345ca9d0bcd58f089)
+        ;
+
+        
+    
+    
+            circle_marker_32068f352d2d869a477ce711790b6ccc.bindTooltip(
+                `<div>
+                     Brazil – Tier 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_259a767994e409421f83f4be1f07fee4 = L.marker(
+                [-23.96, -46.33],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_c3629680be31d449094a409985bef9a1 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Brazil\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_259a767994e409421f83f4be1f07fee4.setIcon(div_icon_c3629680be31d449094a409985bef9a1);
+            
+    
+            var circle_marker_3340765d3fb7d49bdfa6a9d655e49d97 = L.circleMarker(
+                [19.2, -96.1],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_7205df368420c258896a02435400dc85 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f41bec755bf605161e339f9e9f9b63fc = $(`<div id="html_f41bec755bf605161e339f9e9f9b63fc" style="width: 100.0%; height: 100.0%;">Mexico (Tier 4)</div>`)[0];
+                popup_7205df368420c258896a02435400dc85.setContent(html_f41bec755bf605161e339f9e9f9b63fc);
+            
+        
+
+        circle_marker_3340765d3fb7d49bdfa6a9d655e49d97.bindPopup(popup_7205df368420c258896a02435400dc85)
+        ;
+
+        
+    
+    
+            circle_marker_3340765d3fb7d49bdfa6a9d655e49d97.bindTooltip(
+                `<div>
+                     Mexico – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f05c5d2db18faaf704d01b13a5bffd14 = L.marker(
+                [19.2, -96.1],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_3d85dbf70d0093a980d7dd86258b7294 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Mexico\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_f05c5d2db18faaf704d01b13a5bffd14.setIcon(div_icon_3d85dbf70d0093a980d7dd86258b7294);
+            
+    
+            var circle_marker_d3e08b77058eab4c1187e3985268fb53 = L.circleMarker(
+                [-6.1, 106.8],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_ba6df405aae8ebea42c238edb35ae38c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_eea3be71967a9b9e45d1825f53ebffb6 = $(`<div id="html_eea3be71967a9b9e45d1825f53ebffb6" style="width: 100.0%; height: 100.0%;">Indonesia (Tier 4)</div>`)[0];
+                popup_ba6df405aae8ebea42c238edb35ae38c.setContent(html_eea3be71967a9b9e45d1825f53ebffb6);
+            
+        
+
+        circle_marker_d3e08b77058eab4c1187e3985268fb53.bindPopup(popup_ba6df405aae8ebea42c238edb35ae38c)
+        ;
+
+        
+    
+    
+            circle_marker_d3e08b77058eab4c1187e3985268fb53.bindTooltip(
+                `<div>
+                     Indonesia – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_131c8e14f6f30ef2bd099ef8283733c6 = L.marker(
+                [-6.1, 106.8],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_59f3b949f6dd7cf1fa4b0f2d6c2b0db4 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Indonesia\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_131c8e14f6f30ef2bd099ef8283733c6.setIcon(div_icon_59f3b949f6dd7cf1fa4b0f2d6c2b0db4);
+            
+    
+            var circle_marker_e7076161c8cc9da6ae07bd7dae91da51 = L.circleMarker(
+                [59.93, 30.25],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_1190c1c778122ca1a777c7f242d8a9ef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cef312a035f2668de8a3d79208a31914 = $(`<div id="html_cef312a035f2668de8a3d79208a31914" style="width: 100.0%; height: 100.0%;">Russia (Tier 4)</div>`)[0];
+                popup_1190c1c778122ca1a777c7f242d8a9ef.setContent(html_cef312a035f2668de8a3d79208a31914);
+            
+        
+
+        circle_marker_e7076161c8cc9da6ae07bd7dae91da51.bindPopup(popup_1190c1c778122ca1a777c7f242d8a9ef)
+        ;
+
+        
+    
+    
+            circle_marker_e7076161c8cc9da6ae07bd7dae91da51.bindTooltip(
+                `<div>
+                     Russia – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c467added3ba11ef27c4e52232a6f174 = L.marker(
+                [59.93, 30.25],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_34a733aa808c5ec8b52bbe172b82c809 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Russia\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_c467added3ba11ef27c4e52232a6f174.setIcon(div_icon_34a733aa808c5ec8b52bbe172b82c809);
+            
+    
+            var circle_marker_2c3eaa5b45847166cb20407a4bc17096 = L.circleMarker(
+                [46.95, 7.45],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_192fea39f74d96ab7594649849ed362b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8d87650e6198ca2501e39aacbd6c75c4 = $(`<div id="html_8d87650e6198ca2501e39aacbd6c75c4" style="width: 100.0%; height: 100.0%;">Switzerland (Tier 2)</div>`)[0];
+                popup_192fea39f74d96ab7594649849ed362b.setContent(html_8d87650e6198ca2501e39aacbd6c75c4);
+            
+        
+
+        circle_marker_2c3eaa5b45847166cb20407a4bc17096.bindPopup(popup_192fea39f74d96ab7594649849ed362b)
+        ;
+
+        
+    
+    
+            circle_marker_2c3eaa5b45847166cb20407a4bc17096.bindTooltip(
+                `<div>
+                     Switzerland – Tier 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_122fdc8260e6b56e8389bc63353a9343 = L.marker(
+                [46.95, 7.45],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_2fd908adb51e17edd3589e0b22f25c47 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Switzerland\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_122fdc8260e6b56e8389bc63353a9343.setIcon(div_icon_2fd908adb51e17edd3589e0b22f25c47);
+            
+    
+            var circle_marker_c2a1613a2359ca0c35b69275b1815a04 = L.circleMarker(
+                [21.48, 39.18],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_ca8fd6a42039e98d340baff50ee786af = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_38f5410e408ba64dc08316ffb53604e7 = $(`<div id="html_38f5410e408ba64dc08316ffb53604e7" style="width: 100.0%; height: 100.0%;">Saudi Arabia (Tier 2)</div>`)[0];
+                popup_ca8fd6a42039e98d340baff50ee786af.setContent(html_38f5410e408ba64dc08316ffb53604e7);
+            
+        
+
+        circle_marker_c2a1613a2359ca0c35b69275b1815a04.bindPopup(popup_ca8fd6a42039e98d340baff50ee786af)
+        ;
+
+        
+    
+    
+            circle_marker_c2a1613a2359ca0c35b69275b1815a04.bindTooltip(
+                `<div>
+                     Saudi Arabia – Tier 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_81937bf9c2471f4b406ac9b4f2f9840a = L.marker(
+                [21.48, 39.18],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_06a9793bd40da1c6f37a79d909155990 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Saudi Arabia\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_81937bf9c2471f4b406ac9b4f2f9840a.setIcon(div_icon_06a9793bd40da1c6f37a79d909155990);
+            
+    
+            var circle_marker_dbf565e72ef54a664dbc52a0a0834e9d = L.circleMarker(
+                [40.98, 28.95],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_f9c9f21ba8416bdd50615ed43aa1ef0a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f41f81c229b8011a8eac48d8e70041f6 = $(`<div id="html_f41f81c229b8011a8eac48d8e70041f6" style="width: 100.0%; height: 100.0%;">Turkey (Tier 2)</div>`)[0];
+                popup_f9c9f21ba8416bdd50615ed43aa1ef0a.setContent(html_f41f81c229b8011a8eac48d8e70041f6);
+            
+        
+
+        circle_marker_dbf565e72ef54a664dbc52a0a0834e9d.bindPopup(popup_f9c9f21ba8416bdd50615ed43aa1ef0a)
+        ;
+
+        
+    
+    
+            circle_marker_dbf565e72ef54a664dbc52a0a0834e9d.bindTooltip(
+                `<div>
+                     Turkey – Tier 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_2f103a25ce8dc1e6c4abfebf19b47e74 = L.marker(
+                [40.98, 28.95],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_3b419d384ea205e7438b12de5cceec6d = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Turkey\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_2f103a25ce8dc1e6c4abfebf19b47e74.setIcon(div_icon_3b419d384ea205e7438b12de5cceec6d);
+            
+    
+            var circle_marker_f979b7cb48d846f428ab8ba9c04f571f = L.circleMarker(
+                [54.36, 18.65],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_d7706c9d6ae552f7268210ce6e67ed08 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cf001fb28d7691c7496b0cef8d7d3554 = $(`<div id="html_cf001fb28d7691c7496b0cef8d7d3554" style="width: 100.0%; height: 100.0%;">Poland (Tier 3)</div>`)[0];
+                popup_d7706c9d6ae552f7268210ce6e67ed08.setContent(html_cf001fb28d7691c7496b0cef8d7d3554);
+            
+        
+
+        circle_marker_f979b7cb48d846f428ab8ba9c04f571f.bindPopup(popup_d7706c9d6ae552f7268210ce6e67ed08)
+        ;
+
+        
+    
+    
+            circle_marker_f979b7cb48d846f428ab8ba9c04f571f.bindTooltip(
+                `<div>
+                     Poland – Tier 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_aa6cce2ba8f05b300c493657b8fff50d = L.marker(
+                [54.36, 18.65],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_f1c0ec8d64e043ea2807024c0f5bb865 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Poland\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_aa6cce2ba8f05b300c493657b8fff50d.setIcon(div_icon_f1c0ec8d64e043ea2807024c0f5bb865);
+            
+    
+            var circle_marker_7cc79426cff877d3b4968b24fca660a2 = L.circleMarker(
+                [57.7, 11.95],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_b1c0ae3d4484504fa81fb31f20e74dfc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4cca4a9788eb2374f4ad6f26f177b08b = $(`<div id="html_4cca4a9788eb2374f4ad6f26f177b08b" style="width: 100.0%; height: 100.0%;">Sweden (Tier 3)</div>`)[0];
+                popup_b1c0ae3d4484504fa81fb31f20e74dfc.setContent(html_4cca4a9788eb2374f4ad6f26f177b08b);
+            
+        
+
+        circle_marker_7cc79426cff877d3b4968b24fca660a2.bindPopup(popup_b1c0ae3d4484504fa81fb31f20e74dfc)
+        ;
+
+        
+    
+    
+            circle_marker_7cc79426cff877d3b4968b24fca660a2.bindTooltip(
+                `<div>
+                     Sweden – Tier 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_4bf25526cfde3986114785bd39f1784c = L.marker(
+                [57.7, 11.95],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_ac9cab4e5975ee5375e7c729aee2ed93 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Sweden\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_4bf25526cfde3986114785bd39f1784c.setIcon(div_icon_ac9cab4e5975ee5375e7c729aee2ed93);
+            
+    
+            var circle_marker_ddb059553ee90c204f417f6f9dde4b4e = L.circleMarker(
+                [-29.88, 31.05],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_7611193953c9bdc9db93e5d5a28cbfaf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d3ee07ef1fa0c92417873ee0a449a581 = $(`<div id="html_d3ee07ef1fa0c92417873ee0a449a581" style="width: 100.0%; height: 100.0%;">South Africa (Tier 2)</div>`)[0];
+                popup_7611193953c9bdc9db93e5d5a28cbfaf.setContent(html_d3ee07ef1fa0c92417873ee0a449a581);
+            
+        
+
+        circle_marker_ddb059553ee90c204f417f6f9dde4b4e.bindPopup(popup_7611193953c9bdc9db93e5d5a28cbfaf)
+        ;
+
+        
+    
+    
+            circle_marker_ddb059553ee90c204f417f6f9dde4b4e.bindTooltip(
+                `<div>
+                     South Africa – Tier 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d71b053f11b0f90548759c0e8b0fe4b1 = L.marker(
+                [-29.88, 31.05],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_3e756591c7c3f636f119e1903bf03b51 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    South Africa\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_d71b053f11b0f90548759c0e8b0fe4b1.setIcon(div_icon_3e756591c7c3f636f119e1903bf03b51);
+            
+    
+            var circle_marker_8b586db580183b0001f785a4dbeede90 = L.circleMarker(
+                [-34.6, -58.37],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_22517de7dd6f14e8285177e451b62c21 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f15ca5fb096c8b62aec1581ae8a1b3a8 = $(`<div id="html_f15ca5fb096c8b62aec1581ae8a1b3a8" style="width: 100.0%; height: 100.0%;">Argentina (Tier 3)</div>`)[0];
+                popup_22517de7dd6f14e8285177e451b62c21.setContent(html_f15ca5fb096c8b62aec1581ae8a1b3a8);
+            
+        
+
+        circle_marker_8b586db580183b0001f785a4dbeede90.bindPopup(popup_22517de7dd6f14e8285177e451b62c21)
+        ;
+
+        
+    
+    
+            circle_marker_8b586db580183b0001f785a4dbeede90.bindTooltip(
+                `<div>
+                     Argentina – Tier 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9dfbab9ec3d1522ad01b5b380104b33b = L.marker(
+                [-34.6, -58.37],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_49b221251136cfe0b18daa90189324bc = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Argentina\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_9dfbab9ec3d1522ad01b5b380104b33b.setIcon(div_icon_49b221251136cfe0b18daa90189324bc);
+            
+    
+            var circle_marker_a0c232963422256164534163e0c586d3 = L.circleMarker(
+                [25.0, 55.06],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_8dd2cc51bebcddf7e979a8ba0e8de194 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_313da47c1349bff26b7804bdb33942b6 = $(`<div id="html_313da47c1349bff26b7804bdb33942b6" style="width: 100.0%; height: 100.0%;">UAE (Tier 3)</div>`)[0];
+                popup_8dd2cc51bebcddf7e979a8ba0e8de194.setContent(html_313da47c1349bff26b7804bdb33942b6);
+            
+        
+
+        circle_marker_a0c232963422256164534163e0c586d3.bindPopup(popup_8dd2cc51bebcddf7e979a8ba0e8de194)
+        ;
+
+        
+    
+    
+            circle_marker_a0c232963422256164534163e0c586d3.bindTooltip(
+                `<div>
+                     UAE – Tier 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_a223eb36e3db7770ed5b5d9a2043b822 = L.marker(
+                [25.0, 55.06],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_e6147efda98220b613bb6daa1abb1e2c = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    UAE\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_a223eb36e3db7770ed5b5d9a2043b822.setIcon(div_icon_e6147efda98220b613bb6daa1abb1e2c);
+            
+    
+            var circle_marker_d231686082b1544cb81257ec21d5d869 = L.circleMarker(
+                [13.1, 100.9],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_3539c4a063cf64c6afbe5c7ed64424f9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bd30b6ec0778b00033dcc456383789b0 = $(`<div id="html_bd30b6ec0778b00033dcc456383789b0" style="width: 100.0%; height: 100.0%;">Thailand (Tier 4)</div>`)[0];
+                popup_3539c4a063cf64c6afbe5c7ed64424f9.setContent(html_bd30b6ec0778b00033dcc456383789b0);
+            
+        
+
+        circle_marker_d231686082b1544cb81257ec21d5d869.bindPopup(popup_3539c4a063cf64c6afbe5c7ed64424f9)
+        ;
+
+        
+    
+    
+            circle_marker_d231686082b1544cb81257ec21d5d869.bindTooltip(
+                `<div>
+                     Thailand – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1ae7e2c3671e7c4956d0baa7a46e32f8 = L.marker(
+                [13.1, 100.9],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_9ab1fded3042437ce77f3be475624b73 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Thailand\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_1ae7e2c3671e7c4956d0baa7a46e32f8.setIcon(div_icon_9ab1fded3042437ce77f3be475624b73);
+            
+    
+            var circle_marker_8fb85e65fccbd75bb7eb0e6f66c56f59 = L.circleMarker(
+                [-33.05, -71.63],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_17a7feab9259c88eb994d2db4b3a2d81 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4fdac1b9ff9c9feb69c8c499894d87be = $(`<div id="html_4fdac1b9ff9c9feb69c8c499894d87be" style="width: 100.0%; height: 100.0%;">Chile (Tier 4)</div>`)[0];
+                popup_17a7feab9259c88eb994d2db4b3a2d81.setContent(html_4fdac1b9ff9c9feb69c8c499894d87be);
+            
+        
+
+        circle_marker_8fb85e65fccbd75bb7eb0e6f66c56f59.bindPopup(popup_17a7feab9259c88eb994d2db4b3a2d81)
+        ;
+
+        
+    
+    
+            circle_marker_8fb85e65fccbd75bb7eb0e6f66c56f59.bindTooltip(
+                `<div>
+                     Chile – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_6777179181bccdec7d60ec3bb300d20e = L.marker(
+                [-33.05, -71.63],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_8754cdb8038447b6e9834b48e9f10630 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Chile\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_6777179181bccdec7d60ec3bb300d20e.setIcon(div_icon_8754cdb8038447b6e9834b48e9f10630);
+            
+    
+            var circle_marker_cdd7772e078876a071689dc52645703b = L.circleMarker(
+                [6.45, 3.4],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_81819346ce3e2b20e84cd7f6c44fb332 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7c477235f9cddeada07e941ca5687ef6 = $(`<div id="html_7c477235f9cddeada07e941ca5687ef6" style="width: 100.0%; height: 100.0%;">Nigeria (Tier 2)</div>`)[0];
+                popup_81819346ce3e2b20e84cd7f6c44fb332.setContent(html_7c477235f9cddeada07e941ca5687ef6);
+            
+        
+
+        circle_marker_cdd7772e078876a071689dc52645703b.bindPopup(popup_81819346ce3e2b20e84cd7f6c44fb332)
+        ;
+
+        
+    
+    
+            circle_marker_cdd7772e078876a071689dc52645703b.bindTooltip(
+                `<div>
+                     Nigeria – Tier 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_5be3a58f97588825b1de39ac304e81c9 = L.marker(
+                [6.45, 3.4],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_e5a16aad8510bf22451d39ddc585e53c = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Nigeria\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_5be3a58f97588825b1de39ac304e81c9.setIcon(div_icon_e5a16aad8510bf22451d39ddc585e53c);
+            
+    
+            var circle_marker_fe6827aade1592bb6a3ae51be2839560 = L.circleMarker(
+                [-36.84, 174.77],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_bd58e6cae20a34918250300a43d5a2f4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_353b4e711ccd476ea687ab1fb9581ebc = $(`<div id="html_353b4e711ccd476ea687ab1fb9581ebc" style="width: 100.0%; height: 100.0%;">New Zealand (Tier 4)</div>`)[0];
+                popup_bd58e6cae20a34918250300a43d5a2f4.setContent(html_353b4e711ccd476ea687ab1fb9581ebc);
+            
+        
+
+        circle_marker_fe6827aade1592bb6a3ae51be2839560.bindPopup(popup_bd58e6cae20a34918250300a43d5a2f4)
+        ;
+
+        
+    
+    
+            circle_marker_fe6827aade1592bb6a3ae51be2839560.bindTooltip(
+                `<div>
+                     New Zealand – Tier 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c813e4db1b9c06e57c1a5039af7b0f78 = L.marker(
+                [-36.84, 174.77],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_b561ba9c67694f0a3fbaf2d6fbda81dd = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    New Zealand\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_c813e4db1b9c06e57c1a5039af7b0f78.setIcon(div_icon_b561ba9c67694f0a3fbaf2d6fbda81dd);
+            
+    
+            var circle_marker_2d15f7f1bc86c1939e3f8ef5ccec53a3 = L.circleMarker(
+                [31.26, 32.3],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+        var popup_63815477eafc8449d73dd8cf9409879c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c36b46d9d2797ffb1baa2a1b9f1f2d6c = $(`<div id="html_c36b46d9d2797ffb1baa2a1b9f1f2d6c" style="width: 100.0%; height: 100.0%;">Egypt (Tier 1)</div>`)[0];
+                popup_63815477eafc8449d73dd8cf9409879c.setContent(html_c36b46d9d2797ffb1baa2a1b9f1f2d6c);
+            
+        
+
+        circle_marker_2d15f7f1bc86c1939e3f8ef5ccec53a3.bindPopup(popup_63815477eafc8449d73dd8cf9409879c)
+        ;
+
+        
+    
+    
+            circle_marker_2d15f7f1bc86c1939e3f8ef5ccec53a3.bindTooltip(
+                `<div>
+                     Egypt – Tier 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_5e364ae6be87f46f27c5ac6516f6898b = L.marker(
+                [31.26, 32.3],
+                {
+}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            var div_icon_fe2dca478b6a5d44b39683e442e873c1 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size: 11pt; \n                    color: black; \n                    font-weight: bold;\n                    text-shadow: -1px -1px 0 white, \n                                 1px -1px 0 white, \n                                 -1px 1px 0 white, \n                                 1px 1px 0 white;\n                    white-space: nowrap;\"\u003e\n                    Egypt\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_5e364ae6be87f46f27c5ac6516f6898b.setIcon(div_icon_fe2dca478b6a5d44b39683e442e873c1);
+            
+    
+            var poly_line_560b877e056124458f9ca79135d26052 = L.polyline(
+                [[36.81, 10.29], [36.13, -5.43]],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": "5,5", "dashOffset": null, "fill": false, "fillColor": "#e74c3c", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_560b877e056124458f9ca79135d26052.bindTooltip(
+                `<div>
+                     Tunisia → Spain<br>1406 km<br>transit_hub
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_647c1ae6360ca9f44147ac7fbaf27d12 = L.polyline(
+                [[36.81, 10.29], [44.41, 8.93]],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": "5,5", "dashOffset": null, "fill": false, "fillColor": "#e74c3c", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_647c1ae6360ca9f44147ac7fbaf27d12.bindTooltip(
+                `<div>
+                     Tunisia → Italy<br>852 km<br>transit_hub
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b25c4da7106ba9c0e4f41c3278f9b34a = L.polyline(
+                [[36.81, 10.29], [31.26, 32.3]],
+                {"bubblingMouseEvents": true, "color": "#27ae60", "dashArray": false, "dashOffset": null, "fill": false, "fillColor": "#27ae60", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_b25c4da7106ba9c0e4f41c3278f9b34a.bindTooltip(
+                `<div>
+                     Tunisia → Egypt<br>2114 km<br>direct_export
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0da589f25462f9ef10019542dd6e4850 = L.polyline(
+                [[36.81, 10.29], [43.3, 5.37]],
+                {"bubblingMouseEvents": true, "color": "#e74c3c", "dashArray": "5,5", "dashOffset": null, "fill": false, "fillColor": "#e74c3c", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_0da589f25462f9ef10019542dd6e4850.bindTooltip(
+                `<div>
+                     Tunisia → France<br>833 km<br>transit_hub
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_db6acd83b175d1cbc5069f5bd027e150 = L.polyline(
+                [[40.7, -74.0], [19.2, -96.1]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_db6acd83b175d1cbc5069f5bd027e150.bindTooltip(
+                `<div>
+                     United States → Mexico<br>3182 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_168ac42df65d64e05b6634a5c1670cd3 = L.polyline(
+                [[53.54, 9.99], [54.36, 18.65]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_168ac42df65d64e05b6634a5c1670cd3.bindTooltip(
+                `<div>
+                     Germany → Poland<br>573 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_727ed984172a7783ae77206973a6c358 = L.polyline(
+                [[53.54, 9.99], [57.7, 11.95]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_727ed984172a7783ae77206973a6c358.bindTooltip(
+                `<div>
+                     Germany → Sweden<br>574 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_92720e6ac9a1323db209ea711f7eeedf = L.polyline(
+                [[31.23, 121.47], [-36.84, 174.77]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_92720e6ac9a1323db209ea711f7eeedf.bindTooltip(
+                `<div>
+                     China → New Zealand<br>17824 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_4fd2134ec434e445be881924de997a9c = L.polyline(
+                [[43.3, 5.37], [51.95, 4.14]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_4fd2134ec434e445be881924de997a9c.bindTooltip(
+                `<div>
+                     France → Netherlands<br>966 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_26a54520616171d8d4470f5f4e9e15df = L.polyline(
+                [[43.3, 5.37], [46.95, 7.45]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_26a54520616171d8d4470f5f4e9e15df.bindTooltip(
+                `<div>
+                     France → Switzerland<br>435 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1cc41b623c02c91bec1c6e1309080eeb = L.polyline(
+                [[45.5, -73.55], [40.7, -74.0]],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": "2,4", "dashOffset": null, "fill": false, "fillColor": "#9b59b6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_1cc41b623c02c91bec1c6e1309080eeb.bindTooltip(
+                `<div>
+                     Canada → United States<br>534 km<br>intermediate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_a88bd847df3fd45379f53f954c48f1f6 = L.polyline(
+                [[35.1, 129.04], [35.6, 139.78]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_a88bd847df3fd45379f53f954c48f1f6.bindTooltip(
+                `<div>
+                     South Korea → Japan<br>975 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7a9749065e486033b230abdb480365f1 = L.polyline(
+                [[44.41, 8.93], [53.54, 9.99]],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": "2,4", "dashOffset": null, "fill": false, "fillColor": "#9b59b6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_7a9749065e486033b230abdb480365f1.bindTooltip(
+                `<div>
+                     Italy → Germany<br>1018 km<br>intermediate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b70ad755b3fcb2d0e47cfcecc9d98c83 = L.polyline(
+                [[44.41, 8.93], [40.98, 28.95]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_b70ad755b3fcb2d0e47cfcecc9d98c83.bindTooltip(
+                `<div>
+                     Italy → Turkey<br>2010 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_9fb82bca7bf020ec9f84f27b4a204ff4 = L.polyline(
+                [[19.08, 72.88], [31.23, 121.47]],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": "2,4", "dashOffset": null, "fill": false, "fillColor": "#9b59b6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_9fb82bca7bf020ec9f84f27b4a204ff4.bindTooltip(
+                `<div>
+                     India → China<br>7044 km<br>intermediate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_ee45c4e53f1eea40b05392f3d1170c48 = L.polyline(
+                [[19.08, 72.88], [13.1, 100.9]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_ee45c4e53f1eea40b05392f3d1170c48.bindTooltip(
+                `<div>
+                     India → Thailand<br>3062 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_2257c44ec715fb7d50d08eb38d0a7a28 = L.polyline(
+                [[51.95, 4.14], [51.45, 0.0]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_2257c44ec715fb7d50d08eb38d0a7a28.bindTooltip(
+                `<div>
+                     Netherlands → United Kingdom<br>290 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_710d509f9947f81d20241c53b7babe74 = L.polyline(
+                [[36.13, -5.43], [45.5, -73.55]],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": "2,4", "dashOffset": null, "fill": false, "fillColor": "#9b59b6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_710d509f9947f81d20241c53b7babe74.bindTooltip(
+                `<div>
+                     Spain → Canada<br>7914 km<br>intermediate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3909d26445b112cf63fea5c419603cd1 = L.polyline(
+                [[36.13, -5.43], [-23.96, -46.33]],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": "2,4", "dashOffset": null, "fill": false, "fillColor": "#9b59b6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_3909d26445b112cf63fea5c419603cd1.bindTooltip(
+                `<div>
+                     Spain → Brazil<br>16119 km<br>intermediate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_2f32fe6f8877868e654622d6250d9a55 = L.polyline(
+                [[36.13, -5.43], [6.45, 3.4]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_2f32fe6f8877868e654622d6250d9a55.bindTooltip(
+                `<div>
+                     Spain → Nigeria<br>4788 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_aaa72194754e80042d43017b82ed88ec = L.polyline(
+                [[-23.96, -46.33], [-34.6, -58.37]],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": "2,4", "dashOffset": null, "fill": false, "fillColor": "#9b59b6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_aaa72194754e80042d43017b82ed88ec.bindTooltip(
+                `<div>
+                     Brazil → Argentina<br>1659 km<br>intermediate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_030c6d15fceddb6f8bd363ffae5d9620 = L.polyline(
+                [[-6.1, 106.8], [-12.417105, 130.800923]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_030c6d15fceddb6f8bd363ffae5d9620.bindTooltip(
+                `<div>
+                     Indonesia → Australia<br>2724 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_74ae98f990ba9e6204b949a5818083a6 = L.polyline(
+                [[21.48, 39.18], [25.0, 55.06]],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": "2,4", "dashOffset": null, "fill": false, "fillColor": "#9b59b6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_74ae98f990ba9e6204b949a5818083a6.bindTooltip(
+                `<div>
+                     Saudi Arabia → UAE<br>1667 km<br>intermediate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d38e02a2666e3157cf1887a4f9ac98b9 = L.polyline(
+                [[54.36, 18.65], [59.93, 30.25]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_d38e02a2666e3157cf1887a4f9ac98b9.bindTooltip(
+                `<div>
+                     Poland → Russia<br>932 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d48a613e8e05d00c27bd8c98d2890e7a = L.polyline(
+                [[-34.6, -58.37], [-33.05, -71.63]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_d48a613e8e05d00c27bd8c98d2890e7a.bindTooltip(
+                `<div>
+                     Argentina → Chile<br>1236 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d46ba18f49c5468ffeb8cf98e73344c8 = L.polyline(
+                [[25.0, 55.06], [19.08, 72.88]],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": "2,4", "dashOffset": null, "fill": false, "fillColor": "#9b59b6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_d46ba18f49c5468ffeb8cf98e73344c8.bindTooltip(
+                `<div>
+                     UAE → India<br>1948 km<br>intermediate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_60b70f3058015367f8830b942c398d49 = L.polyline(
+                [[25.0, 55.06], [35.1, 129.04]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_60b70f3058015367f8830b942c398d49.bindTooltip(
+                `<div>
+                     UAE → South Korea<br>9870 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_ad907d6975d651c6d5612475328c0312 = L.polyline(
+                [[13.1, 100.9], [-6.1, 106.8]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_ad907d6975d651c6d5612475328c0312.bindTooltip(
+                `<div>
+                     Thailand → Indonesia<br>2232 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_6c620c28c0f74677005733a4c8aeee39 = L.polyline(
+                [[31.26, 32.3], [21.48, 39.18]],
+                {"bubblingMouseEvents": true, "color": "#9b59b6", "dashArray": "2,4", "dashOffset": null, "fill": false, "fillColor": "#9b59b6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_6c620c28c0f74677005733a4c8aeee39.bindTooltip(
+                `<div>
+                     Egypt → Saudi Arabia<br>1284 km<br>intermediate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_6504a359f2075d47913c7551af74bf8b = L.polyline(
+                [[31.26, 32.3], [-29.88, 31.05]],
+                {"bubblingMouseEvents": true, "color": "#f39c12", "dashArray": "10,5", "dashOffset": null, "fill": false, "fillColor": "#f39c12", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.75, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_803b52af3fcea5b226fa6a08e39c8692);
+        
+    
+            poly_line_6504a359f2075d47913c7551af74bf8b.bindTooltip(
+                `<div>
+                     Egypt → South Africa<br>9519 km<br>final_leg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

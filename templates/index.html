@@ -1,0 +1,138 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tunisia Olive Oil Export Routes</title>
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        crossorigin=""/>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    #controls {
+      padding: 10px;
+      background: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    #map { width: 100%; height: calc(100vh - 120px); }
+    #info { padding: 10px; font-size: 14px; }
+    select, button { padding: 4px 8px; font-size: 14px; }
+  </style>
+</head>
+<body>
+<div id="controls">
+  <label>Destination:
+    <select id="destinationSel"></select>
+  </label>
+
+  <label>Algorithm:
+    <select id="algoSel">
+      <option value="DIJKSTRA_COST">Dijkstra</option>
+      <option value="DIJKSTRA_BIDIR">Bidirectional Dijkstra</option>
+      <option value="ASTAR">A* – Cost + geo heuristic</option>
+    </select>
+  </label>
+
+  <button id="btnCompute">Compute Route</button>
+</div>
+
+<div id="info"></div>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        crossorigin=""></script>
+<script>
+  let map = L.map('map').setView([20, 0], 2);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 7, minZoom: 2
+  }).addTo(map);
+
+  let countryMarkers = {};
+  let routeLayer = null;
+
+  async function loadCountries() {
+    const res = await fetch('/api/countries');
+    const countries = await res.json();
+
+    const destSel = document.getElementById('destinationSel');
+    destSel.innerHTML = '';
+
+    countries.forEach(c => {
+      // markers
+      const opts = (c.id === 'Tunisia')
+        ? { radius: 8, color: 'green', fillColor: 'green', fillOpacity: 0.9 }
+        : { radius: 5 };
+      const m = L.circleMarker([c.lat, c.lon], opts).bindTooltip(c.name);
+      m.addTo(map);
+      countryMarkers[c.id] = m;
+
+      // dropdown (exclude source)
+      if (c.id !== 'Tunisia') {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = c.name;
+        destSel.appendChild(opt);
+      }
+    });
+  }
+
+  async function computeRoute() {
+    const dest = document.getElementById('destinationSel').value;
+    const algo = document.getElementById('algoSel').value;
+    const info = document.getElementById('info');
+
+    if (!dest) {
+      info.textContent = 'Please select a destination.';
+      return;
+    }
+
+    info.textContent = 'Computing route...';
+
+    const res = await fetch(`/api/route?destination=${encodeURIComponent(dest)}&algorithm=${encodeURIComponent(algo)}`);
+    const data = await res.json();
+
+    if (data.error) {
+      info.textContent = data.error;
+      return;
+    }
+
+    if (!data.reachable) {
+      info.textContent = `No route from Tunisia to ${dest} with ${algo}.`;
+      if (routeLayer) {
+        map.removeLayer(routeLayer);
+        routeLayer = null;
+      }
+      return;
+    }
+
+    info.innerHTML =
+      `<b>Algorithm:</b> ${data.algorithm}<br/>
+       <b>Path:</b> ${data.path.join(' → ')}<br/>
+       <b>Hops:</b> ${data.hops}<br/>
+       <b>Total normalized cost:</b> ${data.totalCost.toFixed(3)}<br/>`;
+
+    if (data.segments && data.segments.length) {
+      info.innerHTML += '<b>Segments:</b><br/>';
+      data.segments.forEach(s => {
+        info.innerHTML += `- ${s.from} → ${s.to} : cost=${s.segmentCost.toFixed(3)}, dist=${s.distanceKm.toFixed(0)} km<br/>`;
+      });
+    }
+
+    if (routeLayer) {
+      map.removeLayer(routeLayer);
+    }
+
+    const latlngs = data.path.map(id => countryMarkers[id].getLatLng());
+    routeLayer = L.polyline(latlngs, { weight: 4 }).addTo(map);
+    map.fitBounds(routeLayer.getBounds(), { padding: [20, 20] });
+  }
+
+  document.getElementById('btnCompute').addEventListener('click', computeRoute);
+
+  loadCountries();
+</script>
+</body>
+</html>
